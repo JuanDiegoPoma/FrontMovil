@@ -11,7 +11,7 @@ const kwai = <Icon name={'link'} size={30} color={'black'} />;
 
 const ProfileCard = () => {
     const user = {
-        avatar: "https://www.w3schools.com/howto/img_avatar.png",
+        avatar: "https://i.postimg.cc/1tQ0Psct/videomio.gif",
         coverPhoto: "https://www.w3schools.com/w3images/lights.jpg",
         name: "Juan Diego Poma Cepeda"
     };

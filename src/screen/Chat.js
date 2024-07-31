@@ -3,12 +3,13 @@ import { TextInput, View, StyleSheet, Text, Button } from "react-native";
 
 const Chat = () => {
     const [prompt, setPrompt] = useState('');
-    const [result, setResult] = useState('');
+    const [text, setText] = useState('');
+    const [binaryResult, setBinaryResult] = useState('');
+    const [vowelResult, setVowelResult] = useState('');
 
     const getResultFromOpenApi = async () => {
         try {
-           
-            const response = await fetch('http://192.168.100.51:9004/openapi', {
+            const response = await fetch('http://192.168.200.229:9012/classify-text', {
                 method: 'POST',
                 headers: {
                     "Content-Type": 'application/json'
@@ -19,7 +20,27 @@ const Chat = () => {
 
             console.log('Respuesta del servidor:', jsonData); // Verificar la respuesta del servidor
 
-            setResult(`${jsonData.result} y los token utilizados fueron ${jsonData.tokens}`);
+            setBinaryResult(`${jsonData.result} y los token utilizados fueron ${jsonData.tokens}`);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const getclasificar = async () => {
+        try {
+            const response = await fetch('http://192.168.200.229:9012/clasificartexto', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                body: JSON.stringify({ text })
+            });
+            const jsonData = await response.json();
+
+            console.log('Respuesta del servidor:', jsonData); // Verificar la respuesta del servidor
+
+           // setVowelResult(jsonData.result);
+            setVowelResult(`${jsonData.result} y los token utilizados fueron ${jsonData.tokens}`);
         } catch (error) {
             console.log(error);
         }
@@ -27,15 +48,17 @@ const Chat = () => {
 
     return (
         <View style={styles.container}>
+ 
             <Text style={styles.text}>
-                {'Ingrese El numero que desea convertir a binario'}
+                {'Ingrese el texto para clasificarlo'}
             </Text>
-            <TextInput style={styles.input} value={prompt} onChangeText={setPrompt} />
-            <Button title={'Enviar'} onPress={getResultFromOpenApi} />
+            <TextInput style={styles.input} value={text} onChangeText={setText} />
+            <Button title={'Clasificar'} onPress={getclasificar} />
             <Text style={styles.text}>
-                {result}
+                {vowelResult}
             </Text>
         </View>
+        
     );
 };
 
