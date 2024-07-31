@@ -47,7 +47,7 @@ const Pdf = () => {
       });
       formData.append('question', question);
 
-      const res = await fetch('http://192.168.100.51:9004/upload', {
+      const res = await fetch('http://192.168.100.51:9012/upload', {
         method: 'POST',
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -68,7 +68,7 @@ const Pdf = () => {
 
   const handlePing = async () => {
     try {
-      const res = await fetch('http://192.168.100.51:9004/ping');
+      const res = await fetch('http://192.168.100.51:9012/ping');
       const data = await res.json();
       setPingResponse(data);
     } catch (error) {

@@ -9,6 +9,7 @@ export default function App() {
 
   useEffect(() => {
     const prepareApp = async () => {
+      
       // Simulamos una espera para ver el splash screen durante 8 segundos
       await new Promise(resolve => setTimeout(resolve, 8000)); // Ajustar el tiempo de espera según sea necesario
       setIsReady(true);
