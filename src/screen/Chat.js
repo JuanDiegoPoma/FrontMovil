@@ -7,28 +7,9 @@ const Chat = () => {
     const [binaryResult, setBinaryResult] = useState('');
     const [vowelResult, setVowelResult] = useState('');
 
-    const getResultFromOpenApi = async () => {
-        try {
-            const response = await fetch('http://192.168.200.229:9012/classify-text', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": 'application/json'
-                },
-                body: JSON.stringify({ prompt })
-            });
-            const jsonData = await response.json();
-
-            console.log('Respuesta del servidor:', jsonData); // Verificar la respuesta del servidor
-
-            setBinaryResult(`${jsonData.result} y los token utilizados fueron ${jsonData.tokens}`);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
     const getclasificar = async () => {
         try {
-            const response = await fetch('http://192.168.200.229:9012/clasificartexto', {
+            const response = await fetch('http://192.168.100.51:9012/clasificartexto', {
                 method: 'POST',
                 headers: {
                     "Content-Type": 'application/json'
@@ -39,7 +20,7 @@ const Chat = () => {
 
             console.log('Respuesta del servidor:', jsonData); // Verificar la respuesta del servidor
 
-           // setVowelResult(jsonData.result);
+           setVowelResult(jsonData.result);
             setVowelResult(`${jsonData.result} y los token utilizados fueron ${jsonData.tokens}`);
         } catch (error) {
             console.log(error);
