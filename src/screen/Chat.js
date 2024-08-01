@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TextInput, View, StyleSheet, Text, Button } from "react-native";
 
 const Chat = () => {
-    const [prompt, setPrompt] = useState('');
+
     const [text, setText] = useState('');
     const [binaryResult, setBinaryResult] = useState('');
     const [vowelResult, setVowelResult] = useState('');
@@ -20,7 +20,7 @@ const Chat = () => {
 
             console.log('Respuesta del servidor:', jsonData); // Verificar la respuesta del servidor
 
-           setVowelResult(jsonData.result);
+           // setVowelResult(jsonData.result);
             setVowelResult(`${jsonData.result} y los token utilizados fueron ${jsonData.tokens}`);
         } catch (error) {
             console.log(error);
